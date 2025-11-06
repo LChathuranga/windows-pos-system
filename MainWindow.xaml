@@ -1,0 +1,76 @@
+﻿<Window x:Class="windows_pos_system.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:windows_pos_system.Views.Controls"
+        Title="Jaegar Resto" Height="800" Width="1400"
+        WindowStyle="None" ResizeMode="CanResize"
+        Background="{DynamicResource PrimaryBg}">
+
+<Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="35"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <!-- Top Window Control Bar (spans all columns) -->
+    <Border Grid.Row="0" Background="{DynamicResource PrimaryBg}" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button Content="━" Click="MinimizeWindow_Click" 
+                    Width="45" Height="30" Background="Transparent" 
+                    Foreground="{DynamicResource TextSecondary}" 
+                    BorderThickness="0" FontSize="16" FontWeight="Bold"
+                    ToolTip="Minimize"/>
+            <Button Content="☐" Click="MaximizeWindow_Click" 
+                    Width="45" Height="30" Background="Transparent" 
+                    Foreground="{DynamicResource TextSecondary}" 
+                    BorderThickness="0" FontSize="16"
+                    ToolTip="Maximize"/>
+            <Button x:Name="HeaderCloseButton" Content="✕" Click="CloseWindow_Click" 
+                    Width="45" Height="30" Background="Transparent" 
+                    Foreground="{DynamicResource TextSecondary}" 
+                    BorderThickness="0" FontSize="16" FontWeight="Bold"
+                    ToolTip="Close" MouseEnter="CloseButton_MouseEnter" MouseLeave="CloseButton_MouseLeave">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Foreground" Value="{DynamicResource TextSecondary}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="4">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#E81123"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Border>
+
+    <!-- Main Content Grid (below top bar) -->
+    <Grid Grid.Row="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="380"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <controls:Sidebar Grid.Column="0" x:Name="SidebarControl"/>
+
+        <!-- Main Content Area -->
+        <controls:MainContent Grid.Column="1" x:Name="MainContentControl"/>
+
+        <!-- Order Panel -->
+        <controls:OrderPanel Grid.Column="2" x:Name="OrderPanelControl"/>
+    </Grid>
+    </Grid>
+</Window>

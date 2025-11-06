@@ -1,0 +1,70 @@
+# Recommended .gitignore for Visual Studio (C#/.NET)
+# See https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
+
+## Build artifacts
+bin/
+obj/
+
+## Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Rider
+.idea/
+*.sln.iml
+
+## NuGet
+*.nupkg
+packages/
+.nuget/
+
+## Resharper
+_ReSharper*/
+*.DotSettings.user
+
+## DotNet Core publish
+publish/
+
+## Visual Studio Code
+.vscode/
+
+## Logs
+*.log
+
+## OS files
+Thumbs.db
+.DS_Store
+
+# OneDrive / cloud backup folders
+~$*
+
+# JetBrains Rider
+.idea/
+
+# NuGet packages
+**/packages/*
+
+# Rider cache
+.idea/*
+
+# User-specific files
+*.user
+*.suo
+
+# Windows image file thumbnails
+ehthumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Ignore build results from CI
+/build/
+
+# Others
+*.db
+*.db-shm
+*.db-wal
