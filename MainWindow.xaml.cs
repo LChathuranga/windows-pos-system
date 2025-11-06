@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Media.Animation;
 using System.Windows.Input;
 using System.Windows.Controls;
 using windows_pos_system.ViewModels;
@@ -108,12 +109,42 @@ public partial class MainWindow : Window
 
     private void MinimizeWindow_Click(object sender, RoutedEventArgs e)
     {
-        WindowState = WindowState.Minimized;
+        // quick fade-out animation before minimizing
+        var fade = new DoubleAnimation(0.0, TimeSpan.FromMilliseconds(120));
+        fade.Completed += (s, _) => WindowState = WindowState.Minimized;
+        this.BeginAnimation(Window.OpacityProperty, fade);
     }
 
     private void MaximizeWindow_Click(object sender, RoutedEventArgs e)
     {
-        WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+        // Toggle maximize but constrain to the working area so taskbar remains visible
+        if (WindowState == WindowState.Maximized)
+        {
+            // restore
+            WindowState = WindowState.Normal;
+            // animate restore scale (subtle)
+            var anim = new DoubleAnimation(1.02, 1.0, TimeSpan.FromMilliseconds(180)) { EasingFunction = new QuadraticEase() };
+            this.RenderTransform = new System.Windows.Media.ScaleTransform(1.0, 1.0);
+            this.RenderTransform.BeginAnimation(System.Windows.Media.ScaleTransform.ScaleXProperty, anim);
+            this.RenderTransform.BeginAnimation(System.Windows.Media.ScaleTransform.ScaleYProperty, anim);
+        }
+        else
+        {
+            // maximize to work area (keeps taskbar visible)
+            var workArea = SystemParameters.WorkArea;
+            // apply size and location
+            this.WindowStartupLocation = WindowStartupLocation.Manual;
+            this.Left = workArea.Left;
+            this.Top = workArea.Top;
+            this.Width = workArea.Width;
+            this.Height = workArea.Height;
+            WindowState = WindowState.Normal; // ensure non-max state since we manually set size
+            // subtle scale animation in
+            var animIn = new DoubleAnimation(0.98, 1.0, TimeSpan.FromMilliseconds(160)) { EasingFunction = new QuadraticEase() };
+            this.RenderTransform = new System.Windows.Media.ScaleTransform(1.0, 1.0);
+            this.RenderTransform.BeginAnimation(System.Windows.Media.ScaleTransform.ScaleXProperty, animIn);
+            this.RenderTransform.BeginAnimation(System.Windows.Media.ScaleTransform.ScaleYProperty, animIn);
+        }
     }
 
     private void CloseWindow_Click(object sender, RoutedEventArgs e)
