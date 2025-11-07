@@ -108,18 +108,32 @@ namespace windows_pos_system.ViewModels
 
         public void AddToCart(Product product)
         {
-            var existingItem = CartItems.FirstOrDefault(i => i.Product.Id == product.Id);
-            
-            if (existingItem != null)
+            try
             {
-                existingItem.Quantity++;
-            }
-            else
-            {
-                CartItems.Add(new SaleItem { Product = product, Quantity = 1 });
-            }
+                if (product == null)
+                {
+                    System.Windows.MessageBox.Show("Product is null", "Error");
+                    return;
+                }
 
-            CalculateTotal();
+                var existingItem = CartItems.FirstOrDefault(i => i.Product.Id == product.Id);
+                
+                if (existingItem != null)
+                {
+                    existingItem.Quantity++;
+                }
+                else
+                {
+                    CartItems.Add(new SaleItem { Product = product, Quantity = 1 });
+                }
+
+                CalculateTotal();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show($"Error adding to cart: {ex.Message}\n\n{ex.StackTrace}", 
+                    "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            }
         }
 
         public void RemoveFromCart(SaleItem item)
@@ -131,6 +145,11 @@ namespace windows_pos_system.ViewModels
         private void CalculateTotal()
         {
             TotalAmount = CartItems.Sum(item => item.TotalPrice);
+        }
+
+        public void RecalculateTotal()
+        {
+            CalculateTotal();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

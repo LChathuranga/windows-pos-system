@@ -1,5 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using windows_pos_system.Models;
 
 namespace windows_pos_system.Views.Controls;
 
@@ -7,6 +9,7 @@ public partial class MainContent : UserControl
 {
     public event EventHandler<string>? CategoryChanged;
     public event EventHandler<string>? SearchTextChanged;
+    public event EventHandler<Product>? ProductClicked;
     
     public MainContent()
     {
@@ -26,15 +29,34 @@ public partial class MainContent : UserControl
     {
         if (sender is TextBox searchBox)
         {
-            string searchText = searchBox.Text;
-            if (!string.IsNullOrEmpty(searchText) && searchText != "Search for food, coffe, etc..")
-            {
-                SearchTextChanged?.Invoke(this, searchText);
-            }
-            else
-            {
-                SearchTextChanged?.Invoke(this, string.Empty);
-            }
+            // Update placeholder visibility
+            SearchPlaceholder.Visibility = string.IsNullOrEmpty(searchBox.Text) 
+                ? Visibility.Visible 
+                : Visibility.Collapsed;
+            
+            // Trigger search
+            SearchTextChanged?.Invoke(this, searchBox.Text);
+        }
+    }
+
+    private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
+    {
+        SearchPlaceholder.Visibility = Visibility.Collapsed;
+    }
+
+    private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
+    {
+        if (sender is TextBox searchBox && string.IsNullOrEmpty(searchBox.Text))
+        {
+            SearchPlaceholder.Visibility = Visibility.Visible;
+        }
+    }
+
+    private void ProductCard_Click(object sender, MouseButtonEventArgs e)
+    {
+        if (sender is Border border && border.Tag is Product product)
+        {
+            ProductClicked?.Invoke(this, product);
         }
     }
 }

@@ -46,102 +46,71 @@
 
             <!-- Order Items List -->
             <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
-                <StackPanel>
-                    <!-- Order Item 1 -->
-                    <Border Background="{DynamicResource SecondaryBg}" CornerRadius="10" 
-                            Padding="12" Margin="0,0,0,12">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            
-                            <Grid Grid.Row="0">
-                                <StackPanel Orientation="Horizontal">
-                                    <Border Width="40" Height="40" Background="#F0F0F0" CornerRadius="20">
-                                        <TextBlock Text="🍜" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
-                                        <TextBlock Text="Spicy seasoned sea..." FontSize="13" 
-                                                   Foreground="{DynamicResource TextPrimary}"/>
-                                        <TextBlock Text="$ 2.29" FontSize="12" 
-                                                   Foreground="{DynamicResource TextSecondary}"/>
-                                    </StackPanel>
-                                </StackPanel>
-                                
-                                <TextBox Text="2" Width="40" Height="30" Background="{DynamicResource CardBg}" 
-                                         Foreground="{DynamicResource TextPrimary}" BorderBrush="{DynamicResource BorderColor}"
-                                         TextAlignment="Center" HorizontalAlignment="Right" Margin="0,0,60,0"/>
-                                
-                                <TextBlock Text="$ 4.58" FontSize="14" FontWeight="SemiBold" 
-                                           Foreground="{DynamicResource TextPrimary}" 
-                                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                            </Grid>
-                            
-                            <Grid Grid.Row="1" Margin="0,10,0,0">
-                                <TextBox Background="{DynamicResource CardBg}" BorderBrush="{DynamicResource BorderColor}"
-                                         Foreground="{DynamicResource TextSecondary}" Height="35" 
-                                         Text="Order Note..." FontSize="12" Padding="10,8"/>
-                                <Button Content="🗑️" Width="35" Height="35" HorizontalAlignment="Right"
-                                        Background="Transparent" BorderThickness="1" 
-                                        BorderBrush="{DynamicResource AccentColor}" 
-                                        Foreground="{DynamicResource AccentColor}"/>
-                            </Grid>
-                        </Grid>
-                    </Border>
-
-                    <!-- Order Item 2 -->
-                    <Border Background="{DynamicResource SecondaryBg}" CornerRadius="10" 
-                            Padding="12" Margin="0,0,0,12">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal">
-                                <Border Width="40" Height="40" Background="#F0F0F0" CornerRadius="20">
-                                    <TextBlock Text="🍝" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
-                                    <TextBlock Text="Salted pasta with mu..." FontSize="13" 
-                                               Foreground="{DynamicResource TextPrimary}"/>
-                                    <TextBlock Text="$ 2.69" FontSize="12" 
-                                               Foreground="{DynamicResource TextSecondary}"/>
-                                </StackPanel>
-                            </StackPanel>
-                            
-                            <TextBox Text="1" Width="40" Height="30" Background="{DynamicResource CardBg}" 
-                                     Foreground="{DynamicResource TextPrimary}" BorderBrush="{DynamicResource BorderColor}"
-                                     TextAlignment="Center" HorizontalAlignment="Right" Margin="0,0,60,0"/>
-                            
-                            <TextBlock Text="$ 2.69" FontSize="14" FontWeight="SemiBold" 
-                                       Foreground="{DynamicResource TextPrimary}" 
-                                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                        </Grid>
-                    </Border>
-
-                    <!-- Order Item 3 -->
-                    <Border Background="{DynamicResource SecondaryBg}" CornerRadius="10" 
-                            Padding="12" Margin="0,0,0,12">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal">
-                                <Border Width="40" Height="40" Background="#F0F0F0" CornerRadius="20">
-                                    <TextBlock Text="🍲" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
-                                    <TextBlock Text="Spicy instant noodle..." FontSize="13" 
-                                               Foreground="{DynamicResource TextPrimary}"/>
-                                    <TextBlock Text="$ 3.49" FontSize="12" 
-                                               Foreground="{DynamicResource TextSecondary}"/>
-                                </StackPanel>
-                            </StackPanel>
-                            
-                            <TextBox Text="3" Width="40" Height="30" Background="{DynamicResource CardBg}" 
-                                     Foreground="{DynamicResource TextPrimary}" BorderBrush="{DynamicResource BorderColor}"
-                                     TextAlignment="Center" HorizontalAlignment="Right" Margin="0,0,60,0"/>
-                            
-                            <TextBlock Text="$ 10.47" FontSize="14" FontWeight="SemiBold" 
-                                       Foreground="{DynamicResource TextPrimary}" 
-                                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                        </Grid>
-                    </Border>
-                </StackPanel>
+                <ItemsControl ItemsSource="{Binding CartItems}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Order Item -->
+                            <Border Background="{DynamicResource SecondaryBg}" CornerRadius="10" 
+                                    Padding="12" Margin="0,0,0,12">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <Grid Grid.Row="0">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Width="40" Height="40" Background="{DynamicResource SecondaryBg}" CornerRadius="20" BorderBrush="{DynamicResource BorderColor}" BorderThickness="2">
+                                                <TextBlock Text="�️" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Product.Name}" FontSize="13" 
+                                                           Foreground="{DynamicResource TextPrimary}" TextTrimming="CharacterEllipsis" MaxWidth="110"/>
+                                                <TextBlock FontSize="12" Foreground="{DynamicResource TextSecondary}">
+                                                    <Run Text="$"/>
+                                                    <Run Text="{Binding Product.Price, StringFormat='{}{0:F2}'}"/>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,60,0">
+                                            <Button Content="-" Width="25" Height="25" FontSize="16" FontWeight="Bold"
+                                                    Background="{DynamicResource CardBg}" 
+                                                    Foreground="{DynamicResource TextPrimary}"
+                                                    BorderBrush="{DynamicResource BorderColor}" BorderThickness="1"
+                                                    Click="DecreaseQuantity_Click" Tag="{Binding}"/>
+                                            <TextBlock Text="{Binding Quantity}" Width="30" FontSize="14" 
+                                                       Foreground="{DynamicResource TextPrimary}" 
+                                                       TextAlignment="Center" VerticalAlignment="Center" Margin="5,0"/>
+                                            <Button Content="+" Width="25" Height="25" FontSize="16" FontWeight="Bold"
+                                                    Background="{DynamicResource CardBg}" 
+                                                    Foreground="{DynamicResource TextPrimary}"
+                                                    BorderBrush="{DynamicResource BorderColor}" BorderThickness="1"
+                                                    Click="IncreaseQuantity_Click" Tag="{Binding}"/>
+                                        </StackPanel>
+                                        
+                                        <TextBlock FontSize="14" FontWeight="SemiBold" 
+                                                   Foreground="{DynamicResource TextPrimary}" 
+                                                   HorizontalAlignment="Right" VerticalAlignment="Center">
+                                            <Run Text="$"/>
+                                            <Run Text="{Binding TotalPrice, Mode=OneWay, StringFormat='{}{0:F2}'}"/>
+                                        </TextBlock>
+                                    </Grid>
+                                    
+                                    <Grid Grid.Row="1" Margin="0,10,0,0">
+                                        <TextBox Background="{DynamicResource CardBg}" BorderBrush="{DynamicResource BorderColor}"
+                                                 Foreground="{DynamicResource TextSecondary}" Height="35" 
+                                                 Text="Order Note..." FontSize="12" Padding="10,8" Width="220" HorizontalAlignment="Left"/>
+                                        <Button Content="🗑️" Width="35" Height="35" HorizontalAlignment="Right"
+                                                Background="#E81123" BorderThickness="0" 
+                                                Foreground="White"
+                                                Click="RemoveFromCart_Click" Tag="{Binding}" Cursor="Hand"/>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </ScrollViewer>
 
             <!-- Order Summary -->
@@ -153,8 +122,11 @@
                 </Grid>
                 <Grid Margin="0,0,0,15">
                     <TextBlock Text="Sub total" FontSize="14" Foreground="{DynamicResource TextSecondary}"/>
-                    <TextBlock Text="$ 21.03" FontSize="14" Foreground="{DynamicResource TextPrimary}" 
-                               HorizontalAlignment="Right"/>
+                    <TextBlock FontSize="14" Foreground="{DynamicResource TextPrimary}" 
+                               HorizontalAlignment="Right">
+                        <Run Text="$"/>
+                        <Run Text="{Binding TotalAmount, StringFormat='{}{0:F2}'}"/>
+                    </TextBlock>
                 </Grid>
             </StackPanel>
 

@@ -28,6 +28,18 @@ public partial class MainWindow : Window
             if (_viewModel != null)
                 _viewModel.SearchText = searchText;
         };
+        MainContentControl.ProductClicked += (s, product) => 
+        {
+            try
+            {
+                _viewModel.AddToCart(product);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error in ProductClicked: {ex.Message}\n\n{ex.StackTrace}", 
+                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        };
         OrderPanelControl.CompleteSaleRequested += (s, e) => CompleteSale_Click(s ?? this, new RoutedEventArgs());
     }
 

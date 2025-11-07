@@ -13,6 +13,21 @@ public partial class App : Application
     {
         base.OnStartup(e);
 
+        // Add global exception handlers
+        AppDomain.CurrentDomain.UnhandledException += (s, args) =>
+        {
+            var ex = args.ExceptionObject as Exception;
+            System.Windows.MessageBox.Show($"Unhandled Exception: {ex?.Message}\n\n{ex?.StackTrace}", 
+                "Fatal Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+        };
+
+        this.DispatcherUnhandledException += (s, args) =>
+        {
+            System.Windows.MessageBox.Show($"Dispatcher Exception: {args.Exception.Message}\n\n{args.Exception.StackTrace}", 
+                "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            args.Handled = true;
+        };
+
         try
         {
             // Apply migrations and create database on first run

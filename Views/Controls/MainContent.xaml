@@ -32,10 +32,19 @@
                     <TextBlock Text="🔍" FontSize="18" Foreground="{DynamicResource TextSecondary}" 
                                VerticalAlignment="Center" Margin="15,0,0,0"/>
                     <TextBox x:Name="SearchBox" Background="Transparent" BorderThickness="0" 
-                             Foreground="{DynamicResource TextSecondary}" FontSize="14"
+                             Foreground="{DynamicResource TextPrimary}" FontSize="14"
                              VerticalAlignment="Center" Margin="45,0,15,0"
-                             Text="Search for food, coffe, etc.."
-                             TextChanged="SearchBox_TextChanged"/>
+                             TextChanged="SearchBox_TextChanged"
+                             GotFocus="SearchBox_GotFocus"
+                             LostFocus="SearchBox_LostFocus"/>
+                    <TextBlock x:Name="SearchPlaceholder" 
+                               Text="Search for food, coffee, etc.." 
+                               FontSize="14"
+                               Foreground="{DynamicResource TextSecondary}"
+                               VerticalAlignment="Center" 
+                               Margin="45,0,15,0"
+                               IsHitTestVisible="False"
+                               Visibility="Visible"/>
                 </Grid>
             </Border>
         </Grid>
@@ -96,7 +105,9 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Style="{StaticResource DishCardStyle}" Width="180">
+                            <Border Style="{StaticResource DishCardStyle}" Width="180"
+                                    MouseLeftButtonDown="ProductCard_Click" 
+                                    Tag="{Binding}">
                                 <StackPanel>
                                     <Grid Width="140" Height="140" Margin="0,0,0,10">
                                         <Ellipse Width="140" Height="140" Stroke="{DynamicResource BorderColor}" StrokeThickness="3">
@@ -115,8 +126,8 @@
                                     </TextBlock>
                                     <TextBlock FontSize="12" 
                                                Foreground="{DynamicResource TextSecondary}" TextAlignment="Center" Margin="0,4,0,0">
-                                        <Run Text="{Binding AvailableQuantity}"/>
-                                        <Run Text="Bowls available"/>
+                                        <Run Text="{Binding Stock}"/>
+                                        <Run Text="Available"/>
                                     </TextBlock>
                                 </StackPanel>
                             </Border>
