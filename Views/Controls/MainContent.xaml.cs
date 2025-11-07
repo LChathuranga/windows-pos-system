@@ -17,7 +17,7 @@ public partial class MainContent : UserControl
     {
         if (sender is Button button)
         {
-            string category = button.Content?.ToString() ?? "All";
+            string category = button.Tag is windows_pos_system.Models.Category c ? c.Name : button.Content?.ToString() ?? "All";
             CategoryChanged?.Invoke(this, category);
         }
     }

@@ -21,13 +21,18 @@ public partial class App : Application
 
             // Add sample data
             windows_pos_system.Services.SeedData.Initialize();
+
+            // Create and show main window
+            var mainWindow = new MainWindow();
+            mainWindow.Show();
         }
         catch (Exception ex)
         {
-            System.Windows.MessageBox.Show($"Database Error: {ex.Message}\n\n{ex.StackTrace}", 
+            System.Windows.MessageBox.Show($"Startup Error: {ex.Message}\n\n{ex.InnerException?.Message}\n\n{ex.StackTrace}", 
                 "Startup Error", 
                 System.Windows.MessageBoxButton.OK, 
                 System.Windows.MessageBoxImage.Error);
+            this.Shutdown();
         }
     }
 }

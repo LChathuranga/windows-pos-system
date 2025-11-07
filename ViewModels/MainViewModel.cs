@@ -11,11 +11,23 @@ namespace windows_pos_system.ViewModels
     public class MainViewModel : INotifyPropertyChanged
     {
         private readonly ProductService _productService;
+        
         private string _searchText = string.Empty;
         private decimal _totalAmount;
         private string _selectedCategory = "All";
+        public string SelectedCategory
+        {
+            get => _selectedCategory;
+            set
+            {
+                _selectedCategory = value;
+                OnPropertyChanged();
+                LoadProducts();
+            }
+        }
 
         public ObservableCollection<Product> Products { get; set; }
+        public ObservableCollection<Category> Categories { get; set; }
         public ObservableCollection<SaleItem> CartItems { get; set; }
 
         public string SearchText
@@ -45,8 +57,22 @@ namespace windows_pos_system.ViewModels
         {
             _productService = new ProductService();
             Products = new ObservableCollection<Product>();
+            Categories = new ObservableCollection<Category>();
             CartItems = new ObservableCollection<SaleItem>();
+            LoadCategories();
             LoadProducts();
+        }
+
+        private void LoadCategories()
+        {
+            Categories.Clear();
+            // Add an 'All' pseudo-category
+            Categories.Add(new Category { Name = "All", Description = "All items" });
+            var cats = CategoryService.GetAllCategories();
+            foreach (var c in cats)
+            {
+                Categories.Add(c);
+            }
         }
 
         private void LoadProducts()
@@ -71,6 +97,12 @@ namespace windows_pos_system.ViewModels
         public void FilterByCategory(string category)
         {
             _selectedCategory = category;
+            LoadProducts();
+        }
+
+        public void FilterByCategory(Category category)
+        {
+            _selectedCategory = category?.Name ?? "All";
             LoadProducts();
         }
 

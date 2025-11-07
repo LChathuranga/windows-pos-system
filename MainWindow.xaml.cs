@@ -19,9 +19,10 @@ public partial class MainWindow : Window
         _viewModel = new MainViewModel();
         DataContext = _viewModel;
         
-        // Wire up UserControl events
-        SidebarControl.ThemeToggleRequested += (s, e) => ThemeToggle_Click(s ?? this, new RoutedEventArgs());
-        MainContentControl.CategoryChanged += (s, category) => _viewModel.FilterByCategory(category);
+    // Wire up UserControl events
+    SidebarControl.ThemeToggleRequested += (s, e) => ThemeToggle_Click(s ?? this, new RoutedEventArgs());
+    // When MainContent raises CategoryChanged use SelectedCategory so UI bindings update as well
+    MainContentControl.CategoryChanged += (s, category) => _viewModel.SelectedCategory = category;
         MainContentControl.SearchTextChanged += (s, searchText) => 
         {
             if (_viewModel != null)
@@ -48,8 +49,17 @@ public partial class MainWindow : Window
     {
         if (sender is Button button)
         {
-            string category = button.Tag?.ToString() ?? "All";
-            _viewModel.FilterByCategory(category);
+            if (button.Tag is windows_pos_system.Models.Category cat)
+            {
+                _viewModel.FilterByCategory(cat);
+                _viewModel.SelectedCategory = cat.Name;
+            }
+            else
+            {
+                string category = button.Tag?.ToString() ?? "All";
+                _viewModel.FilterByCategory(category);
+                _viewModel.SelectedCategory = category;
+            }
             
             // Update button styles (simple approach)
             // In production, use proper MVVM with commands

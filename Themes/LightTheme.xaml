@@ -1,23 +1,22 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
-    <!-- Light Theme Colors - Jaegar Resto Style -->
-    
     <!-- Primary Backgrounds -->
-    <SolidColorBrush x:Key="PrimaryBg" Color="#F8F9FA"/>
-    <SolidColorBrush x:Key="SecondaryBg" Color="#FFFFFF"/>
-    <SolidColorBrush x:Key="CardBg" Color="#FFFFFF"/>
+    <!-- Light background: neutral gray tones -->
+    <SolidColorBrush x:Key="PrimaryBg" Color="#F3F4F6"/>
+    <SolidColorBrush x:Key="SecondaryBg" Color="#F5F5F5"/>
+    <SolidColorBrush x:Key="CardBg" Color="#FBFBFB"/>
     
-    <!-- Accent & Interactive Colors -->
-    <SolidColorBrush x:Key="AccentColor" Color="#EF8275"/>
-    <SolidColorBrush x:Key="AccentHover" Color="#FF9184"/>
-    <SolidColorBrush x:Key="AccentPressed" Color="#DC6E64"/>
+    <!-- Accent & Interactive Colors (green accents) -->
+    <SolidColorBrush x:Key="AccentColor" Color="#4CAF50"/>
+    <SolidColorBrush x:Key="AccentHover" Color="#66BB6A"/>
+    <SolidColorBrush x:Key="AccentPressed" Color="#3E8E3A"/>
     
     <!-- Text Colors -->
-    <SolidColorBrush x:Key="TextPrimary" Color="#212529"/>
-    <SolidColorBrush x:Key="TextSecondary" Color="#6C757D"/>
-    <SolidColorBrush x:Key="TextTertiary" Color="#868E96"/>
-    <SolidColorBrush x:Key="TextDisabled" Color="#ADB5BD"/>
+    <SolidColorBrush x:Key="TextPrimary" Color="#1B1F1B"/>
+    <SolidColorBrush x:Key="TextSecondary" Color="#6E7A6E"/>
+    <SolidColorBrush x:Key="TextTertiary" Color="#8A948A"/>
+    <SolidColorBrush x:Key="TextDisabled" Color="#A3A79F"/>
     
     <!-- Border & Divider Colors -->
     <SolidColorBrush x:Key="BorderColor" Color="#DEE2E6"/>
@@ -25,15 +24,15 @@
     <SolidColorBrush x:Key="DividerColor" Color="#CED4DA"/>
     
     <!-- Interactive States -->
-    <SolidColorBrush x:Key="HoverColor" Color="#F8F9FA"/>
-    <SolidColorBrush x:Key="ActiveColor" Color="#EF8275"/>
-    <SolidColorBrush x:Key="FocusColor" Color="#EF8275"/>
+    <SolidColorBrush x:Key="HoverColor" Color="#F1FAF1"/>
+    <SolidColorBrush x:Key="ActiveColor" Color="#4CAF50"/>
+    <SolidColorBrush x:Key="FocusColor" Color="#8BC34A"/>
     
     <!-- Status Colors -->
-    <SolidColorBrush x:Key="SuccessColor" Color="#28A745"/>
-    <SolidColorBrush x:Key="WarningColor" Color="#FFC107"/>
-    <SolidColorBrush x:Key="ErrorColor" Color="#DC3545"/>
-    <SolidColorBrush x:Key="InfoColor" Color="#17A2B8"/>
+    <SolidColorBrush x:Key="SuccessColor" Color="#4CAF50"/>
+    <SolidColorBrush x:Key="WarningColor" Color="#F0A500"/>
+    <SolidColorBrush x:Key="ErrorColor" Color="#E64E3B"/>
+    <SolidColorBrush x:Key="InfoColor" Color="#8BC34A"/>
     
     <!-- Additional UI Colors -->
     <SolidColorBrush x:Key="DisabledColor" Color="#E9ECEF"/>
@@ -42,30 +41,21 @@
     
     <!-- Sidebar Specific -->
     <SolidColorBrush x:Key="SidebarBackground" Color="#FFFFFF"/>
-    <SolidColorBrush x:Key="SidebarIconActive" Color="#EF8275"/>
-    <SolidColorBrush x:Key="SidebarIconInactive" Color="#6C757D"/>
+    <SolidColorBrush x:Key="SidebarIconActive" Color="#4CAF50"/>
+    <SolidColorBrush x:Key="SidebarIconInactive" Color="#B0B0B0"/>
+    <SolidColorBrush x:Key="SidebarHoverIconColor" Color="#4CAF50"/>
+    <SolidColorBrush x:Key="SidebarHoverColor" Color="#E8F5E9"/>
     
     <!-- Input Fields -->
     <SolidColorBrush x:Key="InputBackground" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="InputBorder" Color="#CED4DA"/>
-    <SolidColorBrush x:Key="InputFocusBorder" Color="#EF8275"/>
+    <SolidColorBrush x:Key="InputFocusBorder" Color="#FF6F61"/>
     
     <!-- Scrollbar -->
     <SolidColorBrush x:Key="ScrollbarTrack" Color="#F8F9FA"/>
     <SolidColorBrush x:Key="ScrollbarThumb" Color="#CED4DA"/>
     <SolidColorBrush x:Key="ScrollbarThumbHover" Color="#ADB5BD"/>
     
-    <!-- Legacy compatibility (maps old names to new colors) -->
-    <SolidColorBrush x:Key="BackgroundBrush" Color="#F8F9FA"/>
-    <SolidColorBrush x:Key="SurfaceBrush" Color="#FFFFFF"/>
-    <SolidColorBrush x:Key="CardBrush" Color="#FFFFFF"/>
-    <SolidColorBrush x:Key="AccentBrush" Color="#EF8275"/>
-    <SolidColorBrush x:Key="PrimaryTextBrush" Color="#212529"/>
-    <SolidColorBrush x:Key="SecondaryTextBrush" Color="#6C757D"/>
-    <SolidColorBrush x:Key="BorderBrush" Color="#DEE2E6"/>
-    <SolidColorBrush x:Key="HoverBrush" Color="#F8F9FA"/>
-    <SolidColorBrush x:Key="SuccessBrush" Color="#28A745"/>
-    <SolidColorBrush x:Key="DangerBrush" Color="#DC3545"/>
-    <SolidColorBrush x:Key="InputBrush" Color="#FFFFFF"/>
+    <!-- Legacy compatibility block removed: light/modern theme keys used instead -->
     
 </ResourceDictionary>

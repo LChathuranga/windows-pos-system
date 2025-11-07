@@ -4,46 +4,47 @@
     
     <Border Background="{DynamicResource SecondaryBg}" CornerRadius="0,0,0,16">
         <StackPanel VerticalAlignment="Top">
+            <!-- Use Segoe MDL2 Assets glyphs (monochrome) so they can be themed -->
             <Button Style="{StaticResource IconButtonStyle}" Margin="15,20,15,10">
-                <TextBlock Text="🍽️" FontSize="24"/>
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="" FontSize="18"/>
             </Button>
-            
+
             <Button Style="{StaticResource IconButtonStyle}" Margin="15,10">
-                <TextBlock Text="🏠" FontSize="24"/>
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="" FontSize="18"/>
             </Button>
-            
+
             <Button Style="{StaticResource IconButtonStyle}" Margin="15,10">
-                <TextBlock Text="📊" FontSize="24"/>
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="" FontSize="18"/>
             </Button>
-            
+
             <Button Style="{StaticResource IconButtonStyle}" Margin="15,10">
-                <TextBlock Text="📧" FontSize="24"/>
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="" FontSize="18"/>
             </Button>
-            
+
             <Button Style="{StaticResource IconButtonStyle}" Margin="15,10">
-                <TextBlock Text="🔔" FontSize="24"/>
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="" FontSize="18"/>
             </Button>
-            
+
             <Button Style="{StaticResource IconButtonStyle}" Margin="15,10">
-                <TextBlock Text="⏰" FontSize="24"/>
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="" FontSize="18"/>
             </Button>
-            
+
             <Button Style="{StaticResource IconButtonStyle}" Margin="15,10">
-                <TextBlock Text="✉️" FontSize="24"/>
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="" FontSize="18"/>
             </Button>
-            
+
             <Button Style="{StaticResource IconButtonStyle}" Margin="15,10">
-                <TextBlock Text="🔔" FontSize="24"/>
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="" FontSize="18"/>
             </Button>
-            
+
             <!-- Theme Toggle -->
-            <Button x:Name="ThemeToggleButton" Style="{StaticResource IconButtonStyle}" 
-                    Margin="15,10" Click="ThemeToggle_Click">
-                <TextBlock x:Name="ThemeIcon" Text="🌙" FontSize="24"/>
+        <Button x:Name="ThemeToggleButton" Style="{StaticResource IconButtonStyle}" 
+            Margin="15,10" Click="ThemeToggle_Click">
+                <TextBlock x:Name="ThemeIcon" FontFamily="Segoe MDL2 Assets" Text="" FontSize="18"/>
             </Button>
-            
+
             <Button Style="{StaticResource IconButtonStyle}" Margin="15,350,15,10">
-                <TextBlock Text="⚙️" FontSize="24"/>
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="" FontSize="18"/>
             </Button>
         </StackPanel>
     </Border>

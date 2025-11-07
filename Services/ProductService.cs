@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using windows_pos_system.Data;
 using windows_pos_system.Models;
 
@@ -8,7 +9,7 @@ namespace windows_pos_system.Services
         public List<Product> GetAllProducts()
         {
             using var context = new AppDbContext();
-            return [.. context.Products];
+            return context.Products.ToList();
         }
 
         public void AddProduct(Product product)
